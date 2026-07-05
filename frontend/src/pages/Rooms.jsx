@@ -70,7 +70,7 @@ export default function Rooms({ showToast }) {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Xonalar <span>🏛️</span></h1>
+        <h1 className="page-title">Xonalar</h1>
         <button className="btn btn-primary" onClick={openAdd} style={{ background: 'linear-gradient(135deg,var(--accent3),#05a87a)' }}>+ Yangi xona</button>
       </div>
 
@@ -81,30 +81,36 @@ export default function Rooms({ showToast }) {
           {rooms.map((r) => (
             <div key={r.id} className="card" style={{ '--c1': '#06d6a0', '--c2': '#0095a8' }}>
               <div className="card-header">
-                <div className="card-icon" style={{ background: 'linear-gradient(135deg,var(--accent3),#05a87a)' }}>{ROOM_ICONS[r.room_type] || '🏛️'}</div>
+                <div className="card-icon" style={{ background: 'linear-gradient(135deg,var(--accent3),#05a87a)' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
                 <div className="card-actions">
-                  <button className="btn btn-edit" onClick={() => openEdit(r.id)} title="Tahrirlash">✏️</button>
-                  <button className="btn btn-danger" onClick={() => remove(r.id)} title="O'chirish">🗑</button>
+                  <button className="btn btn-edit" onClick={() => openEdit(r.id)} title="Tahrirlash">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                  </button>
+                  <button className="btn btn-danger" onClick={() => remove(r.id)} title="O'chirish">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                  </button>
                 </div>
               </div>
               <div className="card-name">{r.name}</div>
               <div className="card-meta">
-                <span>🪑 {r.capacity} o'rindiq</span>
-                <span>🏷️ {r.room_type}</span>
+                <span>Sig'im: {r.capacity} o'rindiq</span>
+                <span>Turi: {r.room_type}</span>
               </div>
               <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
                 <span className="tag" style={{ background: 'rgba(6,214,160,0.15)', color: 'var(--accent3)' }}>ID: {r.id}</span>
                 <span className="tag" style={{
                   background: r.is_active ? 'rgba(6,214,160,0.15)' : 'rgba(239,69,101,0.12)',
                   color: r.is_active ? 'var(--accent3)' : 'var(--danger)'
-                }}>{r.is_active ? '✅ Aktiv' : '❌ Nofaol'}</span>
+                }}>{r.is_active ? 'Aktiv' : 'Nofaol'}</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? '✏️ Xonani tahrirlash' : "🏛️ Xona qo'shish"}>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? 'Xonani tahrirlash' : "Xona qo'shish"}>
         <div className="form-row">
           <div className="form-group">
             <label className="form-label">Xona nomi</label>

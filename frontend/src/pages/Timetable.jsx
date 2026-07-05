@@ -163,10 +163,10 @@ export default function Timetable({ showToast }) {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Dars Jadvali <span>📅</span></h1>
+        <h1 className="page-title">Dars Jadvali</h1>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <button className={`view-toggle-btn ${view === 'grid' ? 'active' : ''}`} onClick={() => setView('grid')}>🗓 Jadval</button>
-          <button className={`view-toggle-btn ${view === 'list' ? 'active' : ''}`} onClick={() => setView('list')}>📋 Ro'yxat</button>
+          <button className={`view-toggle-btn ${view === 'grid' ? 'active' : ''}`} onClick={() => setView('grid')}>Jadval</button>
+          <button className={`view-toggle-btn ${view === 'list' ? 'active' : ''}`} onClick={() => setView('list')}>Ro'yxat</button>
           <button className="btn btn-primary" onClick={openAdd} style={{ background: 'linear-gradient(135deg,var(--accent2),#6d28d9)' }}>+ Dars qo'shish</button>
         </div>
       </div>
@@ -174,37 +174,37 @@ export default function Timetable({ showToast }) {
       {/* Filters */}
       <div className="filter-bar">
         <div className="filter-item">
-          <label className="filter-label">🔍 Fan bo'yicha</label>
+          <label className="filter-label">Fan bo'yicha</label>
           <input className="form-input" value={fSubject} onChange={(e) => setFSubject(e.target.value)} placeholder="Fan nomi..." />
         </div>
         <div className="filter-item">
-          <label className="filter-label">👨‍🏫 O'qituvchi</label>
+          <label className="filter-label">O'qituvchi</label>
           <select className="form-select" value={fTeacher} onChange={(e) => setFTeacher(e.target.value)}>
             <option value="">Barchasi</option>
             {teachersList.map(t => <option key={t.id} value={t.id}>{t.full_name}</option>)}
           </select>
         </div>
         <div className="filter-item">
-          <label className="filter-label">🏛️ Xona</label>
-          <select className="form-select" value={fRoom} onChange={(e) => setFRoom(e.target.value)}>
+          <label className="filter-label">Xona</label>
+          <select class="form-select" value={fRoom} onChange={(e) => setFRoom(e.target.value)}>
             <option value="">Barchasi</option>
             {roomsList.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
           </select>
         </div>
         <div className="filter-item">
-          <label className="filter-label">👥 Guruh</label>
+          <label className="filter-label">Guruh</label>
           <select className="form-select" value={fGroup} onChange={(e) => setFGroup(e.target.value)}>
             <option value="">Barchasi</option>
             {groupsList.map(g => <option key={g.id} value={g.id}>{g.name}</option>)}
           </select>
         </div>
-        <button className="btn btn-ghost" onClick={clearFilters} style={{ padding: '10px 14px', whiteSpace: 'nowrap' }}>✕ Tozalash</button>
+        <button className="btn btn-ghost" onClick={clearFilters} style={{ padding: '10px 14px', whiteSpace: 'nowrap' }}>Tozalash</button>
       </div>
 
       {/* Grid View */}
       {view === 'grid' && (
         filtered.length === 0 ? (
-          <EmptyState message="Ko'rsatiladigan dars topilmadi" icon="📅" />
+          <EmptyState message="Ko'rsatiladigan dars topilmadi" />
         ) : (
           <div className="grid-wrap">
             <table className="grid-table">
@@ -231,12 +231,16 @@ export default function Timetable({ showToast }) {
                           {lessons.map(l => (
                             <div key={l.id} className="grid-lesson" style={{ '--dc': DAY_COLORS[l.day_of_week] }}>
                               <div className="grid-lesson-subject" title={l.subject}>{l.subject}</div>
-                              <div className="grid-lesson-meta">👨‍🏫 {maps.tMap[l.teacher_id] || '?'}</div>
-                              <div className="grid-lesson-meta">🏛️ {maps.rMap[l.room_id] || '?'}</div>
-                              <div className="grid-lesson-meta">👥 {maps.gMap[l.group_id] || '?'}</div>
+                              <div className="grid-lesson-meta">O'qituvchi: {maps.tMap[l.teacher_id] || '?'}</div>
+                              <div className="grid-lesson-meta">Xona: {maps.rMap[l.room_id] || '?'}</div>
+                              <div className="grid-lesson-meta">Guruh: {maps.gMap[l.group_id] || '?'}</div>
                               <div className="grid-lesson-actions">
-                                <button className="btn btn-edit" onClick={() => openEdit(l.id)} style={{ padding: '3px 7px', fontSize: 10 }}>✏️</button>
-                                <button className="btn btn-danger" onClick={() => remove(l.id)} style={{ padding: '3px 7px', fontSize: 10 }}>🗑</button>
+                                <button className="btn btn-edit" onClick={() => openEdit(l.id)} style={{ padding: '3px 7px', fontSize: 10 }}>
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                                </button>
+                                <button className="btn btn-danger" onClick={() => remove(l.id)} style={{ padding: '3px 7px', fontSize: 10 }}>
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                                </button>
                               </div>
                             </div>
                           ))}
@@ -263,7 +267,7 @@ export default function Timetable({ showToast }) {
             </thead>
             <tbody>
               {filtered.length === 0 ? (
-                <tr><td colSpan="8"><EmptyState message="Darslar topilmadi" icon="📅" /></td></tr>
+                <tr><td colSpan="8"><EmptyState message="Darslar topilmadi" /></td></tr>
               ) : (
                 [...filtered]
                   .sort((a, b) => a.day_of_week - b.day_of_week || a.start_time.localeCompare(b.start_time))
@@ -282,8 +286,12 @@ export default function Timetable({ showToast }) {
                       <td>{maps.gMap[t.group_id] || t.group_id}</td>
                       <td>
                         <div style={{ display: 'flex', gap: 4 }}>
-                          <button className="btn btn-edit" onClick={() => openEdit(t.id)} style={{ padding: '6px 10px' }}>✏️</button>
-                          <button className="btn btn-danger" onClick={() => remove(t.id)} style={{ padding: '6px 10px' }}>🗑</button>
+                          <button className="btn btn-edit" onClick={() => openEdit(t.id)} style={{ padding: '6px 10px' }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                          </button>
+                          <button className="btn btn-danger" onClick={() => remove(t.id)} style={{ padding: '6px 10px' }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -295,7 +303,7 @@ export default function Timetable({ showToast }) {
       )}
 
       {/* Modal */}
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? '✏️ Darsni tahrirlash' : "📅 Dars qo'shish"}>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? 'Darsni tahrirlash' : "Dars qo'shish"}>
         <div className="form-group">
           <label className="form-label">Fan</label>
           <input className="form-input" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} placeholder="Matematika" />

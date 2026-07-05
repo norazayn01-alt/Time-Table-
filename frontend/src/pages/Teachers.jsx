@@ -69,7 +69,7 @@ export default function Teachers({ showToast }) {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">O'qituvchilar <span>👨‍🏫</span></h1>
+        <h1 className="page-title">O'qituvchilar</h1>
         <button className="btn btn-primary" onClick={openAdd}>+ Yangi qo'shish</button>
       </div>
 
@@ -80,30 +80,36 @@ export default function Teachers({ showToast }) {
           {teachers.map((t) => (
             <div key={t.id} className="card" style={{ '--c1': '#ff6b35', '--c2': '#7c3aed' }}>
               <div className="card-header">
-                <div className="card-icon">👨‍🏫</div>
+                <div className="card-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
                 <div className="card-actions">
-                  <button className="btn btn-edit" onClick={() => openEdit(t.id)} title="Tahrirlash">✏️</button>
-                  <button className="btn btn-danger" onClick={() => remove(t.id)} title="O'chirish">🗑</button>
+                  <button className="btn btn-edit" onClick={() => openEdit(t.id)} title="Tahrirlash">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                  </button>
+                  <button className="btn btn-danger" onClick={() => remove(t.id)} title="O'chirish">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                  </button>
                 </div>
               </div>
               <div className="card-name">{t.full_name}</div>
               <div className="card-meta">
-                <span>📚 {t.subject}</span>
-                {t.email && <span>✉️ {t.email}</span>}
+                <span>Fan: {t.subject}</span>
+                {t.email && <span>Email: {t.email}</span>}
               </div>
               <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
                 <span className="tag" style={{ background: 'rgba(255,107,53,0.15)', color: 'var(--accent)' }}>ID: {t.id}</span>
                 <span className="tag" style={{
                   background: t.is_active ? 'rgba(6,214,160,0.15)' : 'rgba(239,69,101,0.12)',
                   color: t.is_active ? 'var(--accent3)' : 'var(--danger)'
-                }}>{t.is_active ? '✅ Aktiv' : '❌ Nofaol'}</span>
+                }}>{t.is_active ? 'Aktiv' : 'Nofaol'}</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? "✏️ O'qituvchini tahrirlash" : "👨‍🏫 O'qituvchi qo'shish"}>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editId ? "O'qituvchini tahrirlash" : "O'qituvchi qo'shish"}>
         <div className="form-group">
           <label className="form-label">To'liq ism</label>
           <input className="form-input" value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} placeholder="Aliyev Bobur" />
