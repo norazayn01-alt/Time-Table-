@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
-  --bg: #0f0e17;
-  --surface: #1a1828;
-  --surface2: #242235;
-  --border: #2e2b45;
+  --bg: #f7f7f9;
+  --surface: #ffffff;
+  --surface2: #f1f1f5;
+  --border: #e2e2ec;
   --accent: #ff6b35;
   --accent2: #7c3aed;
   --accent3: #06d6a0;
-  --accent4: #ffd166;
-  --text: #fffffe;
-  --text-muted: #a8a4c0;
+  --accent4: #d97706; /* Darker amber for readability on white */
+  --text: #171622;
+  --text-muted: #625f78;
   --danger: #ef4565;
   --radius: 16px;
   --radius-sm: 10px;
@@ -32,9 +32,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 600px 400px at 80% 10%, rgba(124,58,237,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 300px at 10% 80%, rgba(255,107,53,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 400px 400px at 50% 50%, rgba(6,214,160,0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 600px 400px at 80% 10%, rgba(124,58,237,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 10% 80%, rgba(255,107,53,0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 50% 50%, rgba(6,214,160,0.03) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -134,7 +134,7 @@ body::before {
 .btn-danger { background: rgba(239,69,101,0.15); color: var(--danger); border: 1px solid rgba(239,69,101,0.3); }
 .btn-danger:hover { background: rgba(239,69,101,0.25); }
 .btn-ghost { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
-.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.btn-ghost:hover { color: var(--text); border-color: rgba(0,0,0,0.15); }
 .btn-edit { background: rgba(124,58,237,0.15); color: var(--accent2); border: 1px solid rgba(124,58,237,0.3); }
 .btn-edit:hover { background: rgba(124,58,237,0.25); }
 
@@ -160,7 +160,7 @@ body::before {
   background: linear-gradient(90deg, var(--c1, var(--accent)), var(--c2, var(--accent2)));
 }
 
-.card:hover { border-color: rgba(255,107,53,0.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+.card:hover { border-color: rgba(255,107,53,0.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
 .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
 
 .card-icon {
@@ -196,7 +196,7 @@ body::before {
   border-radius: 20px;
   padding: 32px;
   width: 100%; max-width: 480px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
   position: relative;
 }
 
@@ -383,7 +383,7 @@ body::before {
 .grid-empty {
   background: repeating-linear-gradient(
     -45deg, transparent, transparent 5px,
-    rgba(255,255,255,0.012) 5px, rgba(255,255,255,0.012) 10px
+    rgba(0,0,0,0.015) 5px, rgba(0,0,0,0.015) 10px
   );
 }
 
