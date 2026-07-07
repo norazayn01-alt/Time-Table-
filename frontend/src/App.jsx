@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar';
 import Toast from './components/Toast';
 import Dashboard from './pages/Dashboard';
 import Teachers from './pages/Teachers';
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <>
-      <Sidebar activePage={page} onNavigate={setPage} />
+      <Navbar activePage={page} onNavigate={setPage} />
       <main className="main">
         {page === 'dashboard' && <Dashboard />}
         {page === 'teachers' && <Teachers showToast={showToast} />}
