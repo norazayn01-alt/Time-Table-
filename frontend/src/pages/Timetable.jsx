@@ -4,7 +4,7 @@ import { DAYS, DAY_COLORS, STD_SLOTS } from '../constants';
 import Modal from '../components/Modal';
 import EmptyState from '../components/EmptyState';
 
-export default function Timetable({ showToast }) {
+export default function Timetable({ showToast, initialFilters, onFiltersChange }) {
   const [ttData, setTtData] = useState([]);
   const [teachersList, setTeachersList] = useState([]);
   const [roomsList, setRoomsList] = useState([]);
@@ -19,6 +19,16 @@ export default function Timetable({ showToast }) {
   const [fTeacher, setFTeacher] = useState('');
   const [fRoom, setFRoom] = useState('');
   const [fGroup, setFGroup] = useState('');
+
+  // Sync with initialFilters from Navbar dropdown
+  useEffect(() => {
+    if (initialFilters) {
+      setFSubject(initialFilters.subject || '');
+      setFTeacher(initialFilters.teacher_id || '');
+      setFRoom(initialFilters.room_id || '');
+      setFGroup(initialFilters.group_id || '');
+    }
+  }, [initialFilters]);
 
   const load = useCallback(async () => {
     try {

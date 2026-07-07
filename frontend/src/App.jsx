@@ -10,6 +10,7 @@ import './App.css';
 
 export default function App() {
   const [page, setPage] = useState('dashboard');
+  const [filters, setFilters] = useState({ subject: '', teacher_id: '', room_id: '', group_id: '' });
   const [toast, setToast] = useState({ message: '', type: 'success' });
 
   const showToast = useCallback((message, type = 'success') => {
@@ -20,15 +21,30 @@ export default function App() {
     setToast({ message: '', type: 'success' });
   }, []);
 
+  const handleNavigate = useCallback((newPage, newFilters) => {
+    setPage(newPage);
+    if (newFilters) {
+      setFilters(newFilters);
+    } else {
+      setFilters({ subject: '', teacher_id: '', room_id: '', group_id: '' });
+    }
+  }, []);
+
   return (
     <>
-      <Navbar activePage={page} onNavigate={setPage} />
+      <Navbar activePage={page} onNavigate={handleNavigate} />
       <main className="main">
         {page === 'dashboard' && <Dashboard />}
         {page === 'teachers' && <Teachers showToast={showToast} />}
         {page === 'rooms' && <Rooms showToast={showToast} />}
         {page === 'groups' && <Groups showToast={showToast} />}
-        {page === 'timetable' && <Timetable showToast={showToast} />}
+        {page === 'timetable' && (
+          <Timetable 
+            showToast={showToast} 
+            initialFilters={filters}
+            onFiltersChange={setFilters}
+          />
+        )}
       </main>
       <Toast message={toast.message} type={toast.type} onHide={hideToast} />
     </>
